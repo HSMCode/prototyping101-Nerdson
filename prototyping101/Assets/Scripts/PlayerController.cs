@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
@@ -24,7 +24,11 @@ public class PlayerController : MonoBehaviour
         // move our hot red vehicle
         transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
 
-        transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizontalInput);
+        if (verticalInput != 0)
+        {
+            transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizontalInput, Space.Self);
+        }
+        
 
     }
 }
